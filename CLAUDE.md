@@ -23,6 +23,15 @@ recipes in one place.
 - No deployment step and no public URL. The app only runs locally.
 - Do not add new libraries/dependencies without asking first.
 
+## Persistence
+
+- Data is persisted with `localStorage`, keyed under a single namespaced key
+  (e.g. `recipe-box:recipes`), serialized as JSON.
+- Photos are resized/compressed client-side before being stored as data URLs,
+  to stay within localStorage's ~5-10MB per-origin limit.
+- Chosen over IndexedDB for simplicity and zero dependencies, since recipe
+  text data and a few compressed photos comfortably fit the size limit.
+
 ## Development
 
 - Run locally: `npm run dev`
