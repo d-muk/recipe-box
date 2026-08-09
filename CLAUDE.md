@@ -27,3 +27,5 @@ recipes in one place.
 
 - Run locally: `npm run dev`
 - View at: http://localhost:3000
+
+@AGENTS.md
