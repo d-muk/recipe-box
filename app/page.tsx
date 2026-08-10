@@ -21,15 +21,20 @@ export default function Home() {
   const filteredRecipes = useMemo(() => {
     const q = query.trim().toLowerCase();
 
-    return recipes.filter((recipe) => {
-      if (filter === "favorites" && !recipe.isFavorite) return false;
-      if (typeof filter === "object" && !recipe.tags.includes(filter.tag)) return false;
+    return recipes
+      .filter((recipe) => {
+        if (filter === "favorites" && !recipe.isFavorite) return false;
+        if (typeof filter === "object" && !recipe.tags.includes(filter.tag)) return false;
 
-      if (!q) return true;
-      const inTitle = recipe.title.toLowerCase().includes(q);
-      const inIngredients = recipe.ingredients.some((i) => i.toLowerCase().includes(q));
-      return inTitle || inIngredients;
-    });
+        if (!q) return true;
+        const inTitle = recipe.title.toLowerCase().includes(q);
+        const inIngredients = recipe.ingredients.some((i) => i.toLowerCase().includes(q));
+        return inTitle || inIngredients;
+      })
+      .sort((a, b) => {
+        if (a.isFavorite !== b.isFavorite) return a.isFavorite ? -1 : 1;
+        return a.title.localeCompare(b.title);
+      });
   }, [recipes, filter, query]);
 
   if (!isLoaded) return null;
