@@ -12,7 +12,7 @@ export function RecipeCard({
 }) {
   return (
     <Link href={`/recipes/${recipe.id}`} className="block transition-transform hover:scale-[1.01]">
-      <RecipeCardShell className="flex gap-4 p-4">
+      <RecipeCardShell className="flex gap-4 py-4 pl-14 pr-6">
         {recipe.photos[0] && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
