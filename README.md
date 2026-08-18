@@ -1,5 +1,7 @@
 # Recipe Box
 
+<!-- A client-side recipe manager: save, tag, favorite, and search recipes, all stored locally in the browser. -->
+
 A simple recipe box app. Save, organize, and search your favorite recipes
 in one place — right in your browser, no account or server required.
 

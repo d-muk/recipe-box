@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Recipe } from "@/types/recipe";
 import { RecipeCardShell } from "@/components/RecipeCardShell";
+import { RecipeMeta } from "@/components/RecipeMeta";
 import { FavoriteStar } from "@/components/FavoriteStar";
 
 export function RecipeCard({
@@ -28,17 +29,7 @@ export function RecipeCard({
             </h2>
             <FavoriteStar isFavorite={recipe.isFavorite} onToggle={onToggleFavorite} size="sm" />
           </div>
-          <div className="flex flex-wrap items-center gap-2 font-utility text-xs text-ink/70">
-            {recipe.prepTimeMinutes !== null && <span>{recipe.prepTimeMinutes} min</span>}
-            {recipe.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-divider px-2 py-0.5"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <RecipeMeta prepTimeMinutes={recipe.prepTimeMinutes} tags={recipe.tags} />
         </div>
       </RecipeCardShell>
     </Link>

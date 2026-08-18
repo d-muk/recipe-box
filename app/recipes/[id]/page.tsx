@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useRecipes } from "@/lib/recipes-context";
 import { RecipeCardShell } from "@/components/RecipeCardShell";
+import { RecipeMeta } from "@/components/RecipeMeta";
+import { RecipeNotFound } from "@/components/RecipeNotFound";
 import { FavoriteStar } from "@/components/FavoriteStar";
 import { IngredientChecklist } from "@/components/IngredientChecklist";
 
@@ -17,16 +19,7 @@ export default function RecipeDetailPage() {
   const recipe = getRecipe(params.id);
 
   if (!recipe) {
-    return (
-      <div className="mx-auto max-w-3xl px-6 py-8">
-        <RecipeCardShell className="p-6">
-          <p className="font-body text-ink/70">Recipe not found.</p>
-          <Link href="/" className="mt-2 inline-block font-body text-sm text-primary hover:underline">
-            Back to your box
-          </Link>
-        </RecipeCardShell>
-      </div>
-    );
+    return <RecipeNotFound />;
   }
 
   const handleDelete = () => {
@@ -52,14 +45,7 @@ export default function RecipeDetailPage() {
           <FavoriteStar isFavorite={recipe.isFavorite} onToggle={() => toggleFavorite(recipe.id)} />
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 font-utility text-xs text-ink/70">
-          {recipe.prepTimeMinutes !== null && <span>{recipe.prepTimeMinutes} min</span>}
-          {recipe.tags.map((tag) => (
-            <span key={tag} className="rounded-full border border-divider px-2 py-0.5">
-              {tag}
-            </span>
-          ))}
-        </div>
+        <RecipeMeta prepTimeMinutes={recipe.prepTimeMinutes} tags={recipe.tags} />
 
         <div>
           <h2 className="mb-2 font-display text-lg text-primary">Ingredients</h2>
