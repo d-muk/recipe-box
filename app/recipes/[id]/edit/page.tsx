@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useRecipes } from "@/lib/recipes-context";
 import { RecipeForm } from "@/components/RecipeForm";
-import { RecipeCardShell } from "@/components/RecipeCardShell";
+import { RecipeNotFound } from "@/components/RecipeNotFound";
 import type { RecipeDraft } from "@/types/recipe";
 
 export default function EditRecipePage() {
@@ -17,16 +16,7 @@ export default function EditRecipePage() {
   const recipe = getRecipe(params.id);
 
   if (!recipe) {
-    return (
-      <div className="mx-auto max-w-3xl px-6 py-8">
-        <RecipeCardShell className="p-6">
-          <p className="font-body text-ink/70">Recipe not found.</p>
-          <Link href="/" className="mt-2 inline-block font-body text-sm text-primary hover:underline">
-            Back to your box
-          </Link>
-        </RecipeCardShell>
-      </div>
-    );
+    return <RecipeNotFound />;
   }
 
   const handleSubmit = (draft: RecipeDraft) => {
