@@ -15,14 +15,14 @@ export function CategoryTabs({
   };
 
   const tabClass = (filter: CategoryFilter) =>
-    `rounded-t-lg border border-b-0 border-divider px-4 py-2 font-utility text-sm transition-colors ${
+    `shrink-0 [clip-path:polygon(14%_0,86%_0,100%_100%,0%_100%)] px-5 pb-2 pt-3 font-utility text-xs uppercase tracking-wider transition-colors ${
       isActive(filter)
         ? "bg-primary text-paper"
-        : "bg-paper text-ink/70 hover:text-ink"
+        : "bg-divider/25 text-ink/60 hover:bg-divider/45 hover:text-ink"
     }`;
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex gap-1 overflow-x-auto border-b-2 border-divider">
       <button type="button" className={tabClass("all")} onClick={() => onSelect("all")}>
         All
       </button>

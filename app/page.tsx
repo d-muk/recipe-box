@@ -45,6 +45,9 @@ export default function Home() {
         <EmptyState variant="empty-box" />
       ) : (
         <>
+          <p className="border-b border-dashed border-divider pb-2 font-utility text-[0.65rem] uppercase tracking-[0.2em] text-ink/50">
+            {recipes.length} {recipes.length === 1 ? "recipe" : "recipes"} in the box
+          </p>
           <SearchBar value={query} onChange={setQuery} />
           <CategoryTabs tags={allTags} active={filter} onSelect={setFilter} />
           {filteredRecipes.length === 0 ? (
